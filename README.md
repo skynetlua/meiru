@@ -13,6 +13,7 @@ The sparrow may be small, fully-equipped
   * The purpose of Meiru is used in skynet(High Concurrency Network Framework).
 
 ## Example
+Three steps:
 
 ```
 --open development mode
@@ -21,7 +22,6 @@ os.mode = 'dev'
 --include Meiru library
 local extension = require "meiru.extension"
 local meiru     = require "meiru.meiru"
-
 ---------------------------------------
 -- create the router
 ---------------------------------------
@@ -55,7 +55,6 @@ end)
 --create Meiru app Object
 ---------------------------------------
 local app = meiru.create_app()
-
 app.set("views_path", "./assets/view")
 app.set("static_path", "./assets/public")
 
@@ -79,12 +78,14 @@ app.run()
 
 ```
 
-If want to see the detail.just do that
+#### If want to see the detail.just do that
+
 ```
 local tree = app.treeprint()
 log("treeprint:\n", tree)
 ```
-log result:
+
+#### log result:
 ```
 treeprint:
  ++node_root
