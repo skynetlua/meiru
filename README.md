@@ -16,7 +16,7 @@ The sparrow may be small, fully-equipped
 
 ```
 --open development mode
-os.mode = config.debug and 'dev'
+os.mode = 'dev'
 
 --include Meiru library
 local extension = require "meiru.extension"
