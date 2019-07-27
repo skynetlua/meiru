@@ -1,12 +1,5 @@
 
-local config = {
-    debug = true,
-    name = 'meiru', 
-    description = 'meiru web framework', 
-    keywords = 'meiru skynet lua skynetlua'
-}
-
-os.mode = config.debug and 'dev'
+os.mode = 'dev'
 
 local extension = require "meiru.extension"
 local meiru     = require "meiru.meiru"
@@ -51,6 +44,12 @@ local resource_url = "/"
 app.set("views_path", views_path)
 app.set("static_path", static_path)
 app.set("resource_url", resource_url)
+
+local config = {
+    name = 'meiru', 
+    description = 'meiru web framework', 
+    keywords = 'meiru skynet lua skynetlua'
+}
 app.data("config", config)
 
 -- app.set("host", "127.0.0.1")
