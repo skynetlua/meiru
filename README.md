@@ -1,2 +1,2 @@
 # meiru
-a mini web framework of  lua
+a mini web framework of lua
