@@ -23,7 +23,7 @@ os.mode = 'dev'
 local extension = require "meiru.extension"
 local meiru     = require "meiru.meiru"
 ---------------------------------------
--- create the router
+--Step.1 create the router
 ---------------------------------------
 --router is a Node and can produce Node
 local router = meiru.router()
@@ -52,7 +52,7 @@ router.get('/index', function(req, res)
 end)
 
 ---------------------------------------
---create Meiru app Object
+---Step.2 create Meiru app Object
 ---------------------------------------
 local app = meiru.create_app()
 app.set("views_path", "./assets/view")
@@ -109,9 +109,10 @@ treeprint:
 ----ComResponse
 ```
 
-
+```
 ---------------------------------------
---simulate request
+--Step.3 simulate request
+---------------------------------------
 local req = {
     protocol = 'http',
     method   = "get",
@@ -119,20 +120,17 @@ local req = {
     headers  = {},
     body     = "",
 }
-
 --response
 local res = {
     response = function(code, bodyfunc, headers)
         log("response", code, headers)
     end,
 }
-
 --dispatch request
 app.dispatch(req, res)
-
 ```
 
-log reust:
+#### log reust:
 ```
 response 200 {
 	content-type = "text/html;charset=utf-8",
@@ -144,7 +142,7 @@ response 200 {
 }
 ```
 
-What it work?Just do that
+#### What it work?Just do that
 
 ```
 local foot = app.footprint()
@@ -172,7 +170,7 @@ footprint
 
 ```
 
-How ejs.lua work?Just do that
+#### How ejs.lua work?Just do that
 
 ```
 local chunk = app.chunkprint()
