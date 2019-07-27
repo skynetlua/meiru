@@ -8,7 +8,7 @@ The sparrow may be small, fully-equipped
   * All thing is components, just like Unity3D framework.
   * Support Markdown and FastWidget
   * Use 'Meiru' look like express(node.js)
-  * It is sample, No third party Library
+  * It is sample, No has third party Library
   * It can be Debugeb by vscode(lua extension)
   * The purpose of Meiru is used in skynet(High Concurrency Network Framework).
 
