@@ -15,7 +15,7 @@ The sparrow may be small, fully-equipped
 ## Example
 
 ```
---open developmet mode
+--open development mode
 os.mode = config.debug and 'dev'
 
 --include Meiru library
