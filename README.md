@@ -186,11 +186,41 @@ lua ./example.lua
 ```
 
 ## Memory
+the memory tool can dump all objects created by class.
+analyze the time line.You can find the memory that be forgot.
+```
+local memory_info = dump_memory()
+log("memory_info\n", memory_info)
+```
+log result:
+```
+lua已用内存:943.8125KB=>330.2490234375KB
+活跃对象实例:
+extension.lua:550
+创建时间：07/28/19 09:35
+extension.lua:550
+instance:ComPath()
+extension.lua:550
+instance:Node("node_start", table)
+extension.lua:550
+instance:ComHandle(function)
+extension.lua:550
+instance:Node("node_req", table)
+extension.lua:550
+instance:ComCSRF()
+extension.lua:550
+instance:ComBody()
+extension.lua:550
+instance:ComRender()
+extension.lua:550
+instance:Node("node_router")
+extension.lua:550
+instance:Root("node_root", table)
+extension.lua:550
+instance:Node("node_routers")
+extension.lua:550
+```
 
-```
-local memory_info = meiru.dump_instance()
-print(memory_info)
-```
 
 ## Purpose
   The purpose of Meiru is developed for skynet(High Concurrency Network Framework).
