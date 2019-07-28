@@ -190,6 +190,9 @@ lua ./example.lua
 the memory tool can dump all objects created by class.
 analyze the time line.You can find the memory that be forgot.
 ```
+--need development mode, otherwise it no work.
+os.mode = 'dev'
+
 local memory_info = dump_memory()
 log("memory_info\n", memory_info)
 ```
