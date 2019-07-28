@@ -79,6 +79,9 @@ local res = {
 
 app.dispatch(req, res)
 
+local memory_info = dump_memory()
+log("memory_info\n", memory_info)
+
 local foot = app.footprint()
 log("footprint\n", foot)
 
