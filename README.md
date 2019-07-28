@@ -9,8 +9,8 @@ The sparrow may be small, fully-equipped
   * Support Markdown and FastWidget
   * Use 'Meiru' look like express(node.js)
   * It is sample, No has third party Library
-  * It can be Debugeb by vscode(lua extension)
-  * The purpose of Meiru is used in skynet(High Concurrency Network Framework).
+  * Can Debug 'Meiru' with the vscode(lua extension)
+  * The purpose of 'Meiru' is used in skynet(High Concurrency Network Framework).
 
 ## Example
 Three steps:
