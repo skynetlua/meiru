@@ -340,28 +340,38 @@ end
 local ok, skynet = pcall(require, "skynet")
 skynet = ok and skynet
 local class_map = {}
-local alive_map = {}
+local alive_map = {
+    open = (os.mode == "dev")
+}
 
 local function __tostring(...)
-    local args = {...}
-    local ret = {}
-    for _,arg in ipairs(args) do
+    local len = select('#', ...)
+    if len == 0 then
+        return ""
+    end
+    local ret = ""
+    for i = 1, len do
+        arg = select(i, ...)
         local vtype = type(arg)
         if vtype == "function" then
-            table.insert(ret, vtype)
+            ret = ret .. vtype
         elseif vtype == "userdata" then
-            table.insert(ret, vtype)
+            ret = ret .. vtype
         elseif vtype == "thread" then
-            table.insert(ret, vtype)
+            ret = ret .. vtype
         elseif vtype == "table" then
-            table.insert(ret, vtype)
+            ret = ret .. vtype
+        elseif vtype == "string" then
+            ret = ret .. '"'..arg..'"'
         else
-            table.insert(ret, tostring(arg))
+            ret = ret .. tostring(arg)
+        end
+        if i ~= len then
+            ret = ret .. ", "
         end
     end
-    return table.concat(ret, ", ")
+    return ret
 end
-
 
 function class(cname, super)
     assert(cname, "cname not nil")
@@ -452,23 +462,21 @@ function include(model, parent)
     return require(model)
 end
 
----------------------------------------------------
---meiru
----------------------------------------------------
-meiru = {}
-
-function meiru.dump_instance()
+function dump_memory()
     local lua_mem1 = collectgarbage("count")
     collectgarbage("collect")
     local lua_mem2 = collectgarbage("count")
     local ret = string.format("lua已用内存:%sKB=>%sKB", lua_mem1, lua_mem2) .. "活跃对象实例:"
+    local rets = {ret}
     for key, map in pairs(alive_map) do
-       ret = ret.."创建时间：" .. key
-        for inst,_ in pairs(map) do
-            ret = ret.."instance:".. inst.__cname..":" .. inst.__params .. (inst.__traceback or "")
+        if key ~= "open" then
+            table.insert(rets, "创建时间：" .. key)
+            for inst,_ in pairs(map) do
+                table.insert(rets, "instance:".. inst.__cname.."(" .. inst.__params ..")".. (inst.__traceback or ""))
+            end
         end
     end
-    return ret
+    return table.concat(rets, "\n")
 end
 
 -----------------------------------------------------------
