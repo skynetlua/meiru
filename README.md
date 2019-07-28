@@ -1,5 +1,6 @@
 # meiru
 A mini web framework of lua.
+Components Design and Object-Oriented Design
 The sparrow may be small, fully-equipped
 
 ## Features
