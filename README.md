@@ -185,6 +185,12 @@ Use lua5.3 program
 lua ./example.lua
 ```
 
+## Memory
+
+```
+local memory_info = meiru.dump_instance()
+print(memory_info)
+```
 
 ## Purpose
   The purpose of Meiru is developed for skynet(High Concurrency Network Framework).
