@@ -5,6 +5,7 @@ Components Design and Object-Oriented Design.
 The sparrow may be small, fully-equipped.
 
 ## Features
+  * have memory analyze tool 
   * Object-Oriented Design
   * Composition structure with the 'Node' tree
   * All thing is components, just like Unity3D framework.
