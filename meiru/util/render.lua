@@ -71,7 +71,7 @@ local function load_chunk(content)
         if element.what == 2 then
             chunk = chunk.. element.code.."\n"
         elseif element.what == 3 then
-            chunk = chunk.. "echo(escape("..element.code.."))\n"
+            chunk = chunk.. "escape(echo("..element.code.."))\n"
         elseif element.what == 4 then
             chunk = chunk.. "echo("..element.code..")\n"
         else
