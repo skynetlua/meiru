@@ -580,9 +580,9 @@ function hooktrace(excludes)
 		if info.what ~= "Lua" then return end
 		-- if __excludes[info.name] then return end
 		if event == "call" then
-			skynet.error(string.format("$$ 【调用函数】%s:%s:%s:【%s】", info.short_src, info.currentline,info.namewhat, info.name))
+			log(string.format("$$ 【调用函数】%s:%s:%s:【%s】", info.short_src, info.currentline,info.namewhat, info.name))
 		elseif event == "return" then
-			skynet.error(string.format("$$ 【函数返回】%s:%s:%s:【%s】", info.short_src, info.currentline,info.namewhat, info.name))
+			log(string.format("$$ 【函数返回】%s:%s:%s:【%s】", info.short_src, info.currentline,info.namewhat, info.name))
 		end
 
 		if __excludes[info.name] then return end
@@ -592,7 +592,7 @@ function hooktrace(excludes)
 			local key, value = debug.getlocal(2,i)
 			if key and key ~= "(*temporary)" then
 				if not __excludeVals[key] then
-					skynet.error("$$ local["..key.."] = ", value)
+					log("$$ local["..key.."] = ", value)
 				end
 			else
 				break
@@ -602,7 +602,7 @@ function hooktrace(excludes)
 			local key, value = debug.getupvalue(info.func, i)
 			if key and key ~= "(*temporary)" then
 				if not __excludeVals[key] then
-					skynet.error("$$ upvalue["..key.."] = ", value)
+					log("$$ upvalue["..key.."] = ", value)
 				end
 			else
 				break
