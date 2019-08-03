@@ -551,6 +551,70 @@ function log(...)
     end
 end
 
+
+function hooktrace(excludes)
+	local __excludes = {
+		new = 1,
+		class = 1,
+		log = 1,
+		print = 1,
+		__gtab = 1,
+		__dump = 1,
+		hooktrace = 1,
+	}
+	local __excludeVals = {
+		skynet = 1,
+		_ENV = 1
+	}
+	local __excludeFiles = {
+		["./skynet/lualib/skynet.lua"] = 1,
+	}
+	if excludes then
+		for k,v in pairs(excludes) do
+			__excludes[k] = v
+		end
+	end
+	local function trace(event, line)
+		-- debug.debug()
+		local info = debug.getinfo(2)
+		if info.what ~= "Lua" then return end
+		-- if __excludes[info.name] then return end
+		if event == "call" then
+			skynet.error(string.format("$$ 【调用函数】%s:%s:%s:【%s】", info.short_src, info.currentline,info.namewhat, info.name))
+		elseif event == "return" then
+			skynet.error(string.format("$$ 【函数返回】%s:%s:%s:【%s】", info.short_src, info.currentline,info.namewhat, info.name))
+		end
+
+		if __excludes[info.name] then return end
+		if __excludeFiles[info.short_src] then return end
+
+		for i=1,256 do
+			local key, value = debug.getlocal(2,i)
+			if key and key ~= "(*temporary)" then
+				if not __excludeVals[key] then
+					skynet.error("$$ local["..key.."] = ", value)
+				end
+			else
+				break
+			end
+		end
+		for i=1,256 do
+			local key, value = debug.getupvalue(info.func, i)
+			if key and key ~= "(*temporary)" then
+				if not __excludeVals[key] then
+					skynet.error("$$ upvalue["..key.."] = ", value)
+				end
+			else
+				break
+			end
+		end
+	end
+	debug.sethook(trace,"cr")
+end
+
+function exithooktrace()
+	debug.sethook()
+end
 -- function string.lua_encode(...)
 --     local strs = {}
 --     for i = 1, select('#', ...) do
