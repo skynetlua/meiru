@@ -1,8 +1,8 @@
 # meiru
 
+用法请见[meiru-skynet](https://github.com/skynetlua/meiru-skynet)
 A mini web framework of lua.
 Components Design and Object-Oriented Design.
-The sparrow may be small, fully-equipped.
 
 ## Features
   * have memory analyze tool 
